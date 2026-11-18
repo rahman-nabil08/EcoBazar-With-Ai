@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoBazar - Fresh &amp; Healthy Organic Food</title>
+  <link rel="icon" href="./assets/images/FavIcon.png" type="image/png" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <link rel="stylesheet" href="./assets/css/responsive.css" />
+
+  <style>
+    /* =========================================
+       INLINE CRITICAL STYLES (supplement style.css)
+       ========================================= */
+
+    /* Google Font fallback if style.css doesn't import it */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; }
+
+    /* ---- Top Bar ---- */
+    .top-bar {
+      background-color: #00b207;
+      color: #fff;
+      font-size: 13px;
+      padding: 7px 0;
+    }
+    .top-bar a { color: #fff; }
+    .top-bar a:hover { opacity: .8; }
+    .top-bar .separator { margin: 0 8px; opacity: .6; }
+    .top-bar select {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      outline: none;
+    }
+    .top-bar select option { color: #333; }
+
+    /* ---- Main Nav ---- */
+    .main-nav {
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1030;
+    }
+    .main-nav .logo img { height: 42px; }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      border: 2px solid #00b207;
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 1;
+      max-width: 560px;
+    }
+    .search-bar select {
+      border: none;
+      border-right: 2px solid #00b207;
+      padding: 0 12px;
+      height: 44px;
+      background: #f2f7f2;
+      font-size: 13px;
+      color: #333;
+      outline: none;
+      cursor: pointer;
+    }
+    .search-bar input {
+      border: none;
+      outline: none;
+      padding: 0 14px;
+      flex: 1;
+      font-size: 14px;
+      height: 44px;
+      background: #fff;
+    }
+    .search-bar button {
+      background: #00b207;
+      border: none;
+      padding: 0 18px;
+      height: 44px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .search-bar button:hover { background: #008f05; }
+
+    .nav-icons { display: flex; align-items: center; gap: 20px; }
+    .nav-icon-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 22px;
+      color: #333;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      transition: color .2s;
+    }
+    .nav-icon-btn:hover { color: #00b207; }
+    .nav-icon-btn .badge-count {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: #00b207;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+    .cart-label { font-size: 12px; color: #666; display: flex; flex-direction: column; line-height: 1.2; }
+    .cart-label strong { font-size: 14px; color: #333; }
+
+    /* ---- Category Nav ---- */
+    .cat-nav {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      padding: 0;
+    }
+    .all-categories-btn {
+      background: #00b207;
+      color: #fff;
+      border: none;
+      padding: 13px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .all-categories-btn:hover { background: #008f05; }
+
+    .cat-nav-links { display: flex; align-items: center; gap: 2px; padding: 0 10px; }
+    .cat-nav-links a {
+      padding: 13px 14px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color .2s;
+    }
+    .cat-nav-links a:hover, .cat-nav-links a.active { color: #00b207; }
+    .cat-nav-links a i { font-size: 11px; }
+
+    .special-offer-badge {
+      background: #ff7a00;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    /* ---- Hero ---- */
+    .hero-section {
+      background: #f2f7f2;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content { padding: 70px 0; position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-block;
+      background: #d4edda;
+      color: #00b207;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero-title {
+      font-size: 46px;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-title span { color: #00b207; }
+    .hero-subtitle { font-size: 15px; color: #666; margin-bottom: 32px; max-width: 450px; line-height: 1.7; }
+    .btn-shop-now {
+      background: #00b207;
+      color: #fff;
+      border-radius: 50px;
+      padding: 13px 36px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .3s;
+    }
+    .btn-shop-now:hover { background: #008f05; color: #fff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,178,7,.3); }
+
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 500px;
+    }
+    .hero-image-wrap img {
+      max-height: 460px;
+      object-fit: contain;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.12));
+    }
+
+    /* Floating decorative circles */
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(0,178,7,.08);
+    }
+    .hero-circle-1 { width: 320px; height: 320px; top: 50%; right: 10%; transform: translateY(-50%); }
+    .hero-circle-2 { width: 220px; height: 220px; top: 15%; right: 5%; }
+    .hero-circle-3 { width: 100px; height: 100px; bottom: 10%; right: 48%; }
+
+    /* Leaf decorations */
+    .hero-leaf {
+      position: absolute;
+      font-size: 40px;
+      opacity: .18;
+      color: #00b207;
+    }
+    .hero-leaf-1 { top: 10%; left: 2%; font-size: 60px; transform: rotate(-30deg); }
+    .hero-leaf-2 { bottom: 15%; left: 5%; font-size: 35px; transform: rotate(20deg); }
+
+    .hero-dots { display: flex; gap: 8px; margin-top: 30px; }
+    .hero-dot { width: 10px; height: 10px; border-radius: 50%; background: #c8e6c9; cursor: pointer; transition: all .3s; }
+    .hero-dot.active { background: #00b207; width: 28px; border-radius: 5px; }
+
+    /* ---- Benefits Bar ---- */
+    .benefits-bar {
+      background: #fff;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      padding: 28px 0;
+    }
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 20px;
+    }
+    .benefit-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #f2f7f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .benefit-icon-wrap img { width: 34px; height: 34px; object-fit: contain; }
+    .benefit-text h6 { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+    .benefit-text p { font-size: 12px; color: #888; margin: 0; }
+    .benefit-divider { border-left: 1px solid #e8e8e8; height: 60px; }
+
+    /* ---- Section Header ---- */
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #00b207;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .section-header h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+    .section-header p { font-size: 14px; color: #888; max-width: 500px; margin: 0 auto; }
+
+    /* ---- Product Filter Tabs ---- */
+    .product-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; }
+    .product-tab-btn {
+      padding: 8px 22px;
+      border-radius: 50px;
+      border: 2px solid #e8e8e8;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      color: #666;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .product-tab-btn:hover, .product-tab-btn.active {
+      background: #00b207;
+      border-color: #00b207;
+      color: #fff;
+    }
+
+    /* ---- Product Card ---- */
+    .product-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all .3s;
+      position: relative;
+      height: 100%;
+    }
+    .product-card:hover { box-shadow: 0 10px 35px rgba(0,0,0,.12); transform: translateY(-4px); }
+
+    .product-card-img {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #f9f9f9;
+      overflow: hidden;
+    }
+    .product-card-img img {
+      max-height: 160px;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform .3s;
+    }
+    .product-card:hover .product-card-img img { transform: scale(1.06); }
+
+    .product-actions {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .product-card:hover .product-actions { opacity: 1; }
+    .product-action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: #555;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .product-action-btn:hover { background: #00b207; color: #fff; border-color: #00b207; }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #00b207;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 4px;
+    }
+    .product-badge.sale { background: #ff4d4d; }
+
+    .product-card-body { padding: 16px; }
+    .product-category { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .product-name { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-stars { color: #ffc107; font-size: 12px; }
+    .product-stars span { color: #aaa; font-size: 11px; margin-left: 4px; }
+    .product-price { margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+    .product-price .old-price { font-size: 13px; color: #aaa; text-decoration: line-through; }
+    .product-price .new-price { font-size: 17px; font-weight: 700; color: #00b207; }
+
+    .product-card-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .btn-add-cart {
+      border: 2px solid #00b207;
+      color: #00b207;
+      background: transparent;
+      border-radius: 8px;
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: all .25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+    .btn-add-cart:hover { background: #00b207; color: #fff; }
+
+    /* ---- Promo Banners ---- */
+    .promo-section { background: #f2f7f2; padding: 60px 0; }
+    .promo-card {
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      height: 100%;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .promo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.12); }
+    .promo-card.blue { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+    .promo-card.white { background: #fff; box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .promo-card.orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+
+    .promo-card img { width: 110px; height: 110px; object-fit: contain; flex-shrink: 0; }
+    .promo-text small { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: .5px; }
+    .promo-text h5 { font-size: 17px; font-weight: 800; color: #1a1a1a; margin: 4px 0 6px; line-height: 1.3; }
+    .promo-text p { font-size: 12px; color: #666; margin-bottom: 12px; }
+    .btn-promo {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #00b207;
+      transition: gap .2s;
+    }
+    .btn-promo:hover { color: #008f05; gap: 10px; }
+
+    /* ---- Deal of the Month ---- */
+    .deal-section { background: #fff; padding: 70px 0; }
+    .deal-left-img { border-radius: 20px; overflow: hidden; height: 100%; min-height: 350px; }
+    .deal-left-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 20px; }
+
+    .deal-label { font-size: 13px; color: #00b207; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 8px; }
+    .deal-title { font-size: 38px; font-weight: 800; color: #1a1a1a; line-height: 1.2; margin-bottom: 16px; }
+    .deal-desc { font-size: 14px; color: #777; line-height: 1.8; margin-bottom: 24px; max-width: 400px; }
+
+    .countdown-wrap { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; }
+    .countdown-box {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 10px;
+      width: 72px;
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .countdown-box span:first-child { font-size: 24px; font-weight: 800; line-height: 1; }
+    .countdown-box span:last-child { font-size: 10px; color: #aaa; text-transform: uppercase; margin-top: 2px; }
+
+    .deal-farmer-img { max-height: 320px; object-fit: contain; }
+
+    /* ---- Testimonials ---- */
+    .testimonial-section { background: #f2f7f2; padding: 70px 0; }
+    .testimonial-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.07);
+      height: 100%;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.12); }
+    .quote-icon { font-size: 48px; color: #00b207; line-height: 1; margin-bottom: 12px; opacity: .3; }
+    .testimonial-text { font-size: 14px; color: #555; line-height: 1.8; margin-bottom: 24px; font-style: italic; }
+    .testimonial-footer { display: flex; align-items: center; gap: 14px; border-top: 1px solid #f0f0f0; padding-top: 18px; }
+    .testimonial-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+    .testimonial-info h6 { font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+    .testimonial-info small { font-size: 11px; color: #aaa; }
+    .testimonial-stars { color: #ffc107; font-size: 12px; margin-top: 2px; }
+
+    /* ---- Video Section ---- */
+    .video-section {
+      position: relative;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: url('./assets/images/Image (9).png') center/cover no-repeat;
+    }
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 38, 3, .75);
+    }
+    .video-content { position: relative; z-index: 2; text-align: center; padding: 60px 20px; }
+    .video-content h2 { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.3; }
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: #00b207;
+      cursor: pointer;
+      transition: all .3s;
+      box-shadow: 0 0 0 12px rgba(255,255,255,.2);
+    }
+    .play-btn:hover { transform: scale(1.1); box-shadow: 0 0 0 20px rgba(255,255,255,.15); }
+
+    /* ---- Blog Cards ---- */
+    .blog-section { padding: 70px 0; background: #fff; }
+    .blog-card {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid #eee;
+      background: #fff;
+      transition: transform .3s, box-shadow .3s;
+      height: 100%;
+    }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,.1); }
+    .blog-img-wrap { position: relative; overflow: hidden; height: 220px; }
+    .blog-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .blog-card:hover .blog-img-wrap img { transform: scale(1.06); }
+    .blog-date-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: #00b207;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .blog-body { padding: 22px; }
+    .blog-category { font-size: 11px; font-weight: 600; color: #00b207; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; display: block; }
+    .blog-title { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .blog-excerpt { font-size: 13px; color: #888; line-height: 1.7; margin-bottom: 16px; }
+    .blog-read-more { font-size: 13px; font-weight: 600; color: #00b207; display: inline-flex; align-items: center; gap: 5px; transition: gap .2s; }
+    .blog-read-more:hover { color: #008f05; gap: 10px; }
+
+    /* ---- Newsletter ---- */
+    .newsletter-section { background: #f2f7f2; padding: 60px 0; text-align: center; }
+    .newsletter-section h3 { font-size: 28px; font-weight: 800; color: #1a1a1a; margin-bottom: 8px; }
+    .newsletter-section p { font-size: 14px; color: #888; margin-bottom: 28px; }
+    .newsletter-form { max-width: 580px; margin: 0 auto; }
+    .newsletter-form .form-control {
+      border-radius: 8px 0 0 8px !important;
+      height: 50px;
+      border: 2px solid #e0e0e0;
+      border-right: none;
+      font-size: 14px;
+      padding: 0 18px;
+    }
+    .newsletter-form .form-control:focus { box-shadow: none; border-color: #00b207; }
+    .newsletter-form .btn-subscribe {
+      background: #00b207;
+      color: #fff;
+      border-radius: 0 8px 8px 0 !important;
+      padding: 0 28px;
+      height: 50px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .newsletter-form .btn-subscribe:hover { background: #008f05; }
+
+    /* ---- Footer ---- */
+    .footer-main {
+      background: #002603;
+      color: #ccc;
+      padding: 60px 0 30px;
+    }
+    .footer-logo { height: 40px; filter: brightness(0) invert(1); margin-bottom: 18px; }
+    .footer-desc { font-size: 13px; color: #aaa; line-height: 1.8; margin-bottom: 22px; max-width: 240px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #00b207;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      transition: background .2s, transform .2s;
+    }
+    .social-btn:hover { background: #008f05; transform: translateY(-2px); color: #fff; }
+
+    .footer-heading { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 20px; position: relative; padding-bottom: 10px; }
+    .footer-heading::after { content: ''; position: absolute; bottom: 0; left: 0; width: 36px; height: 3px; background: #00b207; border-radius: 2px; }
+
+    .footer-links { list-style: none; padding: 0; margin: 0; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a { color: #aaa; font-size: 13px; transition: color .2s; display: flex; align-items: center; gap: 7px; }
+    .footer-links a:hover { color: #00b207; padding-left: 4px; }
+    .footer-links a::before { content: '›'; color: #00b207; font-size: 16px; }
+
+    .footer-contact-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; color: #aaa; font-size: 13px; }
+    .footer-contact-item i { color: #00b207; margin-top: 2px; font-size: 16px; flex-shrink: 0; }
+
+    .app-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 8px 16px;
+      color: #fff;
+      transition: all .2s;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+    .app-btn:hover { border-color: #00b207; color: #00b207; }
+    .app-btn i { font-size: 24px; }
+    .app-btn-text small { font-size: 10px; color: #aaa; display: block; }
+    .app-btn-text span { font-size: 14px; font-weight: 600; }
+
+    .footer-bottom {
+      background: #001802;
+      color: #777;
+      font-size: 12px;
+      padding: 16px 0;
+      border-top: 1px solid #0a3a0a;
+    }
+    .footer-bottom a { color: #aaa; }
+    .footer-bottom a:hover { color: #00b207; }
+    .payment-icons { display: flex; gap: 8px; align-items: center; }
+    .payment-icon {
+      background: #fff;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #333;
+    }
+    .payment-icon.visa { background: #1a1f71; color: #fff; }
+    .payment-icon.mc { background: #eb001b; color: #fff; }
+    .payment-icon.pp { background: #003087; color: #fff; }
+    .payment-icon.amex { background: #2e77bc; color: #fff; }
+
+    /* ---- Featured Products ---- */
+    .featured-section { background: #fff; padding: 70px 0; }
+    .featured-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; scrollbar-color: #00b207 #f0f0f0; }
+    .featured-scroll::-webkit-scrollbar { height: 5px; }
+    .featured-scroll::-webkit-scrollbar-thumb { background: #00b207; border-radius: 3px; }
+    .featured-scroll .product-card { min-width: 220px; flex: 0 0 220px; }
+
+    /* ---- Dropdown Menus ---- */
+    .cat-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.1);
+      min-width: 200px;
+      z-index: 999;
+      display: none;
+    }
+    .cat-dropdown.show { display: block; }
+    .cat-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 13px;
+      color: #444;
+      transition: all .2s;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .cat-dropdown a:last-child { border-bottom: none; }
+    .cat-dropdown a:hover { background: #f2f7f2; color: #00b207; padding-left: 26px; }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .hero-title { font-size: 28px; }
+      .deal-title { font-size: 26px; }
+      .hero-content { padding: 40px 0; }
+      .top-bar .text-end { text-align: center !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     SECTION 1: TOP HEADER BAR
+     ============================================================ -->
+<div class="top-bar">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 col-12 text-center text-md-start">
+        <i class="bi bi-tags-fill me-1"></i>
+        Get <strong>5% Off</strong> your first order &mdash; Use code: <strong>ECOBAZAR5</strong>
+      </div>
+      <div class="col-md-6 col-12 text-center text-md-end mt-1 mt-md-0">
+        <select aria-label="Language">
+          <option>Eng</option>
+          <option>Esp</option>
+          <option>Fra</option>
+        </select>
+        <span class="separator">|</span>
+        <select aria-label="Currency">
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+        </select>
+        <span class="separator">|</span>
+        <a href="#">Login</a>
+        <span class="separator">|</span>
+        <a href="#">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION 2: MAIN NAVIGATION
+     ============================================================ -->
+<nav class="main-nav">
+  <div class="container">
+    <div class="row align-items-center g-3">
+      <!-- Logo -->
+      <div class="col-auto logo">
+        <a href="index.html">
+          <img src="./assets/images/Logo.png" alt="EcoBazar Logo" />
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="col d-none d-md-flex justify-content-center">
+        <div class="search-bar">
+          <select aria-label="Category">
+            <option value="">All Categories</option>
+            <option value="vegetables">Fresh Vegetables</option>
+            <option value="fruits">Fresh Fruits</option>
+            <option value="meats">Meats &amp; Fish</option>
+            <option value="snacks">Snacks</option>
+            <option value="dairy">Dairy Products</option>
+          </select>
+          <input type="text" placeholder="Search for products..." aria-label="Search" />
+          <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+
+      <!-- Nav Icons -->
+      <div class="col-auto ms-auto ms-md-0">
+        <div class="nav-icons">
+          <button class="nav-icon-btn" title="Wishlist" aria-label="Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="badge-count">3</span>
+          </button>
+          <div class="d-flex align-items-center gap-2">
+            <button class="nav-icon-btn" title="Cart" aria-label="Shopping Cart">
+              <i class="bi bi-bag"></i>
+              <span class="badge-count">5</span>
+            </button>
+            <div class="cart-label d-none d-lg-block">
+              <span>My Cart</span>
+              <strong>\$125.00</strong>
+            </div>
+          </div>
+          <button class="nav-icon-btn" title="Account" aria-label="Account">
+            <i class="bi bi-person"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Search -->
+    <div class="row mt-2 d-md-none">
+      <div class="col-12">
+        <div class="search-bar" style="max-width:100%">
+          <input type="text" placeholder="Search for products..." aria-label="Search" />
+          <button type="button" aria-label="Search"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     SECTION 3: CATEGORY NAVIGATION BAR
+     ============================================================ -->
+<div class="cat-nav">
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-between">
+      <!-- All Categories Dropdown -->
+      <div class="position-relative" id="categoriesWrapper">
+        <button class="all-categories-btn" id="categoriesToggle" type="button"
+                aria-expanded="false" aria-haspopup="true">
+          <i class="bi bi-grid-3x3-gap-fill"></i>
+          All Categories
+          <i class="bi bi-chevron-down ms-1"></i>
+        </button>
+        <div class="cat-dropdown" id="categoriesMenu">
+          <a href="#"><i class="bi bi-carrot-fill" style="color:#00b207"></i> Fresh Vegetables</a>
+          <a href="#"><i class="bi bi-apple" style="color:#ff4d4d"></i> Fresh Fruits</a>
+          <a href="#"><i class="bi bi-egg-fried" style="color:#ffc107"></i> Meats &amp; Fish</a>
+          <a href="#"><i class="bi bi-cup-straw" style="color:#0dcaf0"></i> Beverages</a>
+          <a href="#"><i class="bi bi-basket-fill" style="color:#6f42c1"></i> Snacks &amp; Cookies</a>
+          <a href="#"><i class="bi bi-droplet-fill" style="color:#0d6efd"></i> Dairy &amp; Eggs</a>
+          <a href="#"><i class="bi bi-flower1" style="color:#20c997"></i> Herbs &amp; Spices</a>
+          <a href="#"><i class="bi bi-box-seam" style="color:#fd7e14"></i> Organic Pantry</a>
+        </div>
+      </div>
+
+      <!-- Center Nav Links -->
+      <div class="cat-nav-links d-none d-lg-flex">
+        <a href="#" class="active">Home</a>
+        <a href="#">Shop <i class="bi bi-chevron-down"></i></a>
+        <a href="#">Pages <i class="bi bi-chevron-down"></i></a>
+        <a href="#">Blog <i class="bi bi-chevron-down"></i></a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <!-- Special Offer Badge -->
+      <div class="d-none d-lg-block">
+        <span class="special-offer-badge">
+          <i class="bi bi-lightning-fill me-1"></i> Special Offer
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION 4: HERO SLIDER
+     ============================================================ -->
+<section class="hero-section">
+  <!-- Decorative Circles -->
+  <div class="hero-circle hero-circle-1"></div>
+  <div class="hero-circle hero-circle-2"></div>
+  <div class="hero-circle hero-circle-3"></div>
+
+  <!-- Decorative Leaves -->
+  <div class="hero-leaf hero-leaf-1">🍃</div>
+  <div class="hero-leaf hero-leaf-2">🌿</div>
+
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Content -->
+      <div class="col-lg-6 col-md-7 hero-content">
+        <span class="hero-badge">
+          <i class="bi bi-patch-check-fill me-1"></i> 100% Natural
+        </span>
+        <h1 class="hero-title">
+          Fresh &amp; Healthy<br />
+          <span>Organic Food</span>
+        </h1>
+        <p class="hero-subtitle">
+          Sale up to <strong>30% OFF</strong> on your first grocery. Free delivery on orders over \$50. Shop fresh, eat healthy, live better with EcoBazar.
+        </p>
+        <a href="#" class="btn-shop-now">
+          Shop Now <i class="bi bi-arrow-right"></i>
+        </a>
+
+        <!-- Slider Dots -->
+        <div class="hero-dots mt-4">
+          <div class="hero-dot active" data-slide="0"></div>
+          <div class="hero-dot" data-slide="1"></div>
+          <div class="hero-dot" data-slide="2"></div>
+        </div>
+      </div>
+
+      <!-- Right Image -->
+      <div class="col-lg-6 col-md-5 d-flex justify-content-center align-items-center hero-image-wrap">
+        <img src="./assets/images/Image.png" alt="Fresh Organic Vegetables Basket" class="img-fluid" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 5: BENEFITS BAR
+     ============================================================ -->
+<section class="benefits-bar">
+  <div class="container">
+    <div class="row align-items-center g-0">
+      <!-- Benefit 1 -->
+      <div class="col-md-3 col-6">
+        <div class="benefit-item">
+          <div class="benefit-icon-wrap">
+            <img src="./assets/images/Icon.png" alt="Free Shipping Icon" />
+          </div>
+          <div class="benefit-text">
+            <h6>Free Shipping</h6>
+            <p>Free shipping on all your order</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block">
+        <div class="benefit-divider"></div>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="col-md-3 col-6">
+        <div class="benefit-item">
+          <div class="benefit-icon-wrap">
+            <img src="./assets/images/Icon (1).png" alt="Secure Payment Icon" />
+          </div>
+          <div class="benefit-text">
+            <h6>Secure Payment</h6>
+            <p>100% secure transactions</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block">
+        <div class="benefit-divider"></div>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="col-md-3 col-6 mt-3 mt-md-0">
+        <div class="benefit-item">
+          <div class="benefit-icon-wrap">
+            <img src="./assets/images/Icon (2).png" alt="Money Back Guarantee Icon" />
+          </div>
+          <div class="benefit-text">
+            <h6>Money Back Guarantee</h6>
+            <p>Returns accepted in 30 days</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-auto d-none d-md-block">
+        <div class="benefit-divider"></div>
+      </div>
+
+      <!-- Benefit 4 -->
+      <div class="col-md-2 col-6 mt-3 mt-md-0">
+        <div class="benefit-item">
+          <div class="benefit-icon-wrap">
+            <img src="./assets/images/Icon (3).png" alt="Online Support Icon" />
+          </div>
+          <div class="benefit-text">
+            <h6>Online Support 24/7</h6>
+            <p>Always here when you need us</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 6: INTRODUCING OUR PRODUCTS
+     ============================================================ -->
+<section class="py-5" style="background:#fff;">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-label">Our Products</span>
+      <h2>Introducing Our Products</h2>
+      <p>Handpicked fresh produce sourced directly from certified organic farms for your table.</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="product-tabs">
+      <button class="product-tab-btn active" data-filter="all">All</button>
+      <button class="product-tab-btn" data-filter="vegetables">Fresh Vegetables</button>
+      <button class="product-tab-btn" data-filter="fruits">Fresh Fruits</button>
+      <button class="product-tab-btn" data-filter="meats">Meats &amp; Fish</button>
+      <button class="product-tab-btn" data-filter="snacks">Snacks</button>
+    </div>
+
+    <!-- Products Grid Row 1 -->
+    <div class="row g-4" id="productsGrid">
+
+      <!-- Product 1: Green Apples -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="fruits">
+        <div class="product-card">
+          <span class="product-badge">Organic</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (1).png" alt="Green Apples" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Fruits</p>
+            <h6 class="product-name">Green Apple</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <span>(4.5) 128 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$5.00</span>
+              <span class="new-price">\$3.99</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2: Mango -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="fruits">
+        <div class="product-card">
+          <span class="product-badge sale">Sale</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (2).png" alt="Fresh Mango" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Fruits</p>
+            <h6 class="product-name">Fresh Alphonso Mango</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <span>(5.0) 96 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$8.00</span>
+              <span class="new-price">\$5.99</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3: Tomatoes -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="vegetables">
+        <div class="product-card">
+          <span class="product-badge">Fresh</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (3).png" alt="Red Tomatoes" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Vegetables</p>
+            <h6 class="product-name">Cherry Tomatoes</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star"></i>
+              <span>(4.0) 74 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$4.50</span>
+              <span class="new-price">\$2.99</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4: Cauliflower -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="vegetables">
+        <div class="product-card">
+          <span class="product-badge">Organic</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (4).png" alt="Cauliflower" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Vegetables</p>
+            <h6 class="product-name">White Cauliflower</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <span>(4.5) 52 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$3.50</span>
+              <span class="new-price">\$2.49</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5: Leafy Greens -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="vegetables">
+        <div class="product-card">
+          <span class="product-badge sale">Sale</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (5).png" alt="Leafy Greens" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Vegetables</p>
+            <h6 class="product-name">Baby Spinach Leaves</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <span>(5.0) 89 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$4.00</span>
+              <span class="new-price">\$2.79</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6: Green Peppers -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="vegetables">
+        <div class="product-card">
+          <span class="product-badge">Fresh</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (6).png" alt="Green Peppers" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Vegetables</p>
+            <h6 class="product-name">Green Bell Pepper</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star"></i>
+              <span>(4.0) 61 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$2.80</span>
+              <span class="new-price">\$1.99</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7: Eggplant -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="vegetables">
+        <div class="product-card">
+          <span class="product-badge">Organic</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (7).png" alt="Eggplant" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Vegetables</p>
+            <h6 class="product-name">Purple Brinjal / Eggplant</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <span>(4.5) 43 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$3.00</span>
+              <span class="new-price">\$2.29</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8: Oranges -->
+      <div class="col-lg-3 col-md-4 col-6 product-item" data-category="fruits">
+        <div class="product-card">
+          <span class="product-badge sale">Sale</span>
+          <div class="product-card-img">
+            <img src="./assets/images/Image (8).png" alt="Oranges" loading="lazy" />
+          </div>
+          <div class="product-actions">
+            <button class="product-action-btn" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+            <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+            <button class="product-action-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+          </div>
+          <div class="product-card-body">
+            <p class="product-category">Fresh Fruits</p>
+            <h6 class="product-name">Navel Oranges (1 kg)</h6>
+            <div class="product-stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <span>(5.0) 115 reviews</span>
+            </div>
+            <div class="product-price">
+              <span class="old-price">\$6.50</span>
+              <span class="new-price">\$4.49</span>
+            </div>
+          </div>
+          <div class="product-card-footer">
+            <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /products grid -->
+
+    <!-- View All Button -->
+    <div class="text-center mt-5">
+      <a href="#" class="btn-shop-now" style="display:inline-flex;">
+        View All Products <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 7: PROMOTIONAL BANNERS
+     ============================================================ -->
+<section class="promo-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Promo Card 1: Milk -->
+      <div class="col-lg-4 col-md-6">
+        <div class="promo-card blue">
+          <img src="./assets/images/Image (12).png" alt="Fresh Cow Milk" />
+          <div class="promo-text">
+            <small>Dairy</small>
+            <h5>100% Fresh Cow Milk</h5>
+            <p>Farm-fresh pasteurized milk delivered to your door every morning.</p>
+            <a href="#" class="btn-promo">
+              Shop Now <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo Card 2: Juice -->
+      <div class="col-lg-4 col-md-6">
+        <div class="promo-card white">
+          <img src="./assets/images/Image (13).png" alt="Natural Fresh Juice" />
+          <div class="promo-text">
+            <small>Beverages &bull; <span style="color:#ff4d4d;font-weight:700;">20% OFF</span></small>
+            <h5>Natural &amp; Fresh Juice</h5>
+            <p>Cold-pressed, no added sugar, 100% pure fruit goodness in every sip.</p>
+            <a href="#" class="btn-promo">
+              Shop Now <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Promo Card 3: Nuts -->
+      <div class="col-lg-4 col-md-6">
+        <div class="promo-card orange">
+          <img src="./assets/images/Image (14).png" alt="Nuts and Dried Fruits" />
+          <div class="promo-text">
+            <small>Snacks</small>
+            <h5>Healthy Nuts &amp; Dried Fruits</h5>
+            <p>Premium quality mixed nuts and exotic dried fruits for a healthy snack.</p>
+            <a href="#" class="btn-promo">
+              Shop Now <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 8: DEAL OF THE MONTH
+     ============================================================ -->
+<section class="deal-section">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+
+      <!-- Left: Big Vegetable Image -->
+      <div class="col-lg-4 col-md-5">
+        <div class="deal-left-img">
+          <img src="./assets/images/Image (9).png" alt="Organic Vegetables Basket" />
+        </div>
+      </div>
+
+      <!-- Center: Text + Countdown -->
+      <div class="col-lg-4 col-md-7">
+        <span class="deal-label">
+          <i class="bi bi-award-fill me-1"></i> Our Special Products
+        </span>
+        <h2 class="deal-title">Deal of the<br /><span style="color:#00b207;">Month</span></h2>
+        <p class="deal-desc">
+          Don't miss out on our exclusive monthly deal! Get the finest selection of fresh organic vegetables and fruits at an unbeatable price. Limited stock — grab yours before it's gone!
+        </p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-wrap" id="countdown">
+          <div class="countdown-box">
+            <span id="cd-days">30</span>
+            <span>Days</span>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-hours">00</span>
+            <span>Hours</span>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-mins">00</span>
+            <span>Mins</span>
+          </div>
+          <div class="countdown-box">
+            <span id="cd-secs">00</span>
+            <span>Secs</span>
+          </div>
+        </div>
+
+        <a href="#" class="btn-shop-now mt-2">
+          Shop Now <i class="bi bi-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Right: Farmer Image -->
+      <div class="col-lg-4 d-none d-lg-flex justify-content-center">
+        <img src="./assets/images/Product Image.png" alt="Farmer with Vegetable Box" class="deal-farmer-img img-fluid" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 9: FEATURED PRODUCTS
+     ============================================================ -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Top Picks</span>
+      <h2>Featured Products</h2>
+      <p>Our most loved and highest rated products by our loyal customers.</p>
+    </div>
+
+    <div class="featured-scroll">
+
+      <!-- Featured 1: Green Apple -->
+      <div class="product-card">
+        <span class="product-badge">Featured</span>
+        <div class="product-card-img">
+          <img src="./assets/images/Image (1).png" alt="Green Apple" loading="lazy" />
+        </div>
+        <div class="product-actions">
+          <button class="product-action-btn" title="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="product-card-body">
+          <p class="product-category">Fresh Fruits</p>
+          <h6 class="product-name">Green Apple</h6>
+          <div class="product-stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price">
+            <span class="old-price">\$5.00</span>
+            <span class="new-price">\$3.99</span>
+          </div>
+        </div>
+        <div class="product-card-footer">
+          <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Featured 2: Oranges -->
+      <div class="product-card">
+        <span class="product-badge sale">Sale</span>
+        <div class="product-card-img">
+          <img src="./assets/images/Image (8).png" alt="Navel Oranges" loading="lazy" />
+        </div>
+        <div class="product-actions">
+          <button class="product-action-btn" title="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="product-card-body">
+          <p class="product-category">Fresh Fruits</p>
+          <h6 class="product-name">Navel Oranges</h6>
+          <div class="product-stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <div class="product-price">
+            <span class="old-price">\$6.50</span>
+            <span class="new-price">\$4.49</span>
+          </div>
+        </div>
+        <div class="product-card-footer">
+          <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Featured 3: Green Herb -->
+      <div class="product-card">
+        <span class="product-badge">Fresh</span>
+        <div class="product-card-img">
+          <img src="./assets/images/Image (10).png" alt="Green Herb" loading="lazy" />
+        </div>
+        <div class="product-actions">
+          <button class="product-action-btn" title="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="product-card-body">
+          <p class="product-category">Herbs &amp; Spices</p>
+          <h6 class="product-name">Fresh Coriander</h6>
+          <div class="product-stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star"></i>
+          </div>
+          <div class="product-price">
+            <span class="old-price">\$2.00</span>
+            <span class="new-price">\$1.29</span>
+          </div>
+        </div>
+        <div class="product-card-footer">
+          <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Featured 4: Broccoli -->
+      <div class="product-card">
+        <span class="product-badge">Organic</span>
+        <div class="product-card-img">
+          <img src="./assets/images/Image (11).png" alt="Broccoli" loading="lazy" />
+        </div>
+        <div class="product-actions">
+          <button class="product-action-btn" title="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="product-card-body">
+          <p class="product-category">Fresh Vegetables</p>
+          <h6 class="product-name">Organic Broccoli</h6>
+          <div class="product-stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price">
+            <span class="old-price">\$4.00</span>
+            <span class="new-price">\$2.99</span>
+          </div>
+        </div>
+        <div class="product-card-footer">
+          <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Featured 5: Eggplant -->
+      <div class="product-card">
+        <span class="product-badge">Featured</span>
+        <div class="product-card-img">
+          <img src="./assets/images/Image (7).png" alt="Eggplant" loading="lazy" />
+        </div>
+        <div class="product-actions">
+          <button class="product-action-btn" title="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="product-action-btn" title="Quick View"><i class="bi bi-eye"></i></button>
+        </div>
+        <div class="product-card-body">
+          <p class="product-category">Fresh Vegetables</p>
+          <h6 class="product-name">Purple Eggplant</h6>
+          <div class="product-stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <div class="product-price">
+            <span class="old-price">\$3.00</span>
+            <span class="new-price">\$2.29</span>
+          </div>
+        </div>
+        <div class="product-card-footer">
+          <button class="btn-add-cart"><i class="bi bi-cart-plus"></i> Add to Cart</button>
+        </div>
+      </div>
+
+    </div><!-- /featured-scroll -->
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 10: TESTIMONIALS
+     ============================================================ -->
+<section class="testimonial-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Customer Reviews</span>
+      <h2>What Our Clients Say</h2>
+      <p>Real stories from real customers who love our fresh organic produce.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Testimonial 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="testimonial-text">
+            "EcoBazar has completely transformed how my family eats. The vegetables are incredibly fresh — you can taste the difference immediately. I love that everything is sourced organically. We've been customers for over a year and wouldn't go anywhere else!"
+          </p>
+          <div class="testimonial-footer">
+            <img src="./assets/images/Image (15).png" alt="Sarah Johnson" class="testimonial-avatar" />
+            <div class="testimonial-info">
+              <h6>Sarah Johnson</h6>
+              <small><i class="bi bi-patch-check-fill text-success me-1"></i>Verified Buyer</small>
+              <div class="testimonial-stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="testimonial-text">
+            "I am absolutely impressed by the quality and freshness of the produce I receive. The delivery is always on time and the packaging is eco-friendly too. The team at EcoBazar truly cares about healthy living. Highly recommend to anyone looking for organic groceries!"
+          </p>
+          <div class="testimonial-footer">
+            <img src="./assets/images/Image (16).png" alt="Michael Chen" class="testimonial-avatar" />
+            <div class="testimonial-info">
+              <h6>Michael Chen</h6>
+              <small><i class="bi bi-patch-check-fill text-success me-1"></i>Verified Buyer</small>
+              <div class="testimonial-stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card">
+          <div class="quote-icon"><i class="bi bi-quote"></i></div>
+          <p class="testimonial-text">
+            "As a nutritionist, I am very particular about where my food comes from. EcoBazar has exceeded my expectations every single time. The variety is excellent, and the prices are very competitive for the quality you receive. My clients love the recommendations I make based on their products!"
+          </p>
+          <div class="testimonial-footer">
+            <img src="./assets/images/Image (17).png" alt="Emma Williams" class="testimonial-avatar" />
+            <div class="testimonial-info">
+              <h6>Emma Williams</h6>
+              <small><i class="bi bi-patch-check-fill text-success me-1"></i>Verified Buyer</small>
+              <div class="testimonial-stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 11: VIDEO SECTION
+     ============================================================ -->
+<section class="video-section">
+  <div class="video-overlay"></div>
+  <div class="video-content">
+    <h2>Why EcoBazar is the Best<br />Organic Farm in the World</h2>
+    <button class="play-btn" id="playBtn" aria-label="Play Video">
+      <i class="bi bi-play-fill"></i>
+    </button>
+    <p class="text-white mt-4" style="font-size:14px; opacity:.7;">Watch how we grow and deliver the freshest organic produce</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 12: LATEST NEWS / BLOG
+     ============================================================ -->
+<section class="blog-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Blog</span>
+      <h2>Latest News</h2>
+      <p>Stay updated with tips, recipes, and the latest news from the organic world.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Blog 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="blog-card">
+          <div class="blog-img-wrap">
+            <img src="./assets/images/Image (18).png" alt="Organic Oranges Blog" loading="lazy" />
+            <span class="blog-date-badge">Nov 12, 2025</span>
+          </div>
+          <div class="blog-body">
+            <span class="blog-category">Healthy Eating</span>
+            <h5 class="blog-title">Top 10 Benefits of Eating Organic Citrus Fruits Every Day</h5>
+            <p class="blog-excerpt">Discover why incorporating organic oranges and citrus fruits into your daily routine can transform your health and boost your immunity naturally...</p>
+            <a href="#" class="blog-read-more">
+              Read More <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="blog-card">
+          <div class="blog-img-wrap">
+            <img src="./assets/images/Image (19).png" alt="Cold-Pressed Juice Blog" loading="lazy" />
+            <span class="blog-date-badge">Nov 05, 2025</span>
+          </div>
+          <div class="blog-body">
+            <span class="blog-category">Recipes</span>
+            <h5 class="blog-title">How to Make the Perfect Cold-Pressed Juice at Home</h5>
+            <p class="blog-excerpt">Cold-pressed juices are packed with nutrients. Learn how to make them from fresh organic fruits and vegetables at home with just a few simple steps...</p>
+            <a href="#" class="blog-read-more">
+              Read More <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="blog-card">
+          <div class="blog-img-wrap">
+            <img src="./assets/images/Image (20).png" alt="Seasonal Fruits Blog" loading="lazy" />
+            <span class="blog-date-badge">Oct 28, 2025</span>
+          </div>
+          <div class="blog-body">
+            <span class="blog-category">Lifestyle</span>
+            <h5 class="blog-title">Why Eating Seasonal Organic Fruits is Better for You and the Planet</h5>
+            <p class="blog-excerpt">Seasonal eating isn't just a trend — it is one of the most sustainable and nutritious choices you can make for your family and the environment...</p>
+            <a href="#" class="blog-read-more">
+              Read More <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 13: NEWSLETTER
+     ============================================================ -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-md-9 text-center">
+        <span class="section-label d-block mb-2">Newsletter</span>
+        <h3>Subscribe to our Newsletter</h3>
+        <p>Get weekly updates on fresh arrivals, exclusive deals, healthy recipes, and more — straight to your inbox.</p>
+        <div class="newsletter-form">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email address..." aria-label="Email Address" />
+            <button class="btn-subscribe" type="button">
+              <i class="bi bi-send-fill me-2"></i>Subscribe
+            </button>
+          </div>
+        </div>
+        <small class="text-muted mt-3 d-block" style="font-size:12px;">
+          <i class="bi bi-lock-fill me-1 text-success"></i>
+          We respect your privacy. No spam, ever. Unsubscribe anytime.
+        </small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 14: FOOTER
+     ============================================================ -->
+<footer class="footer-main">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Col 1: Brand & Social -->
+      <div class="col-lg-3 col-md-6">
+        <img src="./assets/images/Logo.png" alt="EcoBazar Logo" class="footer-logo" />
+        <p class="footer-desc">
+          EcoBazar is your trusted online destination for 100% certified organic groceries, delivered fresh from farm to your doorstep. Live healthy, eat clean.
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn" title="Pinterest"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="social-btn" title="YouTube"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Col 2: Quick Links -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-heading">Quick Links</h6>
+        <ul class="footer-links">
+          <li><a href="#">About EcoBazar</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog &amp; Recipes</a></li>
+          <li><a href="#">Press Room</a></li>
+          <li><a href="#">Gift Cards</a></li>
+          <li><a href="#">Affiliate Program</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Help -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-heading">Help</h6>
+        <ul class="footer-links">
+          <li><a href="#">Payment Options</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns &amp; Cancellations</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Security &amp; Privacy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Support / Contact -->
+      <div class="col-lg-2 col-md-6">
+        <h6 class="footer-heading">Support</h6>
+        <div class="footer-contact-item">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>69 Peach Blossom Road,<br />Garden City, CA 94102</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-telephone-fill"></i>
+          <span>+1 (800) 123-4567</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          <span>support@ecobazar.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-chat-dots-fill"></i>
+          <span>Live Chat Support<br />(Mon–Sun, 8am–10pm)</span>
+        </div>
+      </div>
+
+      <!-- Col 5: Newsletter + App Download -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-heading">Download Our App</h6>
+        <p style="font-size:13px; color:#aaa; margin-bottom:16px;">
+          Shop on the go! Get exclusive app-only deals and track your orders in real time.
+        </p>
+        <a href="#" class="app-btn">
+          <i class="bi bi-google-play"></i>
+          <div class="app-btn-text">
+            <small>Get it on</small>
+            <span>Google Play</span>
+          </div>
+        </a>
+        <a href="#" class="app-btn">
+          <i class="bi bi-apple"></i>
+          <div class="app-btn-text">
+            <small>Download on the</small>
+            <span>App Store</span>
+          </div>
+        </a>
+
+        <!-- Footer Mini Newsletter -->
+        <div class="mt-4">
+          <h6 class="footer-heading">Newsletter</h6>
+          <div class="input-group" style="margin-top:-8px;">
+            <input type="email" class="form-control"
+              style="background:#0a3a0a;border-color:#1a5c1a;color:#fff;font-size:13px;"
+              placeholder="Your email..." aria-label="Newsletter email" />
+            <button class="btn" type="button"
+              style="background:#00b207;color:#fff;border:none;padding:0 14px;font-size:13px;">
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+  <!-- Footer Bottom Bar -->
+  <div class="footer-bottom mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+          &copy; 2025 <strong style="color:#fff;">EcoBazar</strong>. All rights reserved. Crafted with
+          <i class="bi bi-heart-fill" style="color:#ff4d4d;"></i> for a healthier world.
+          &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms</a>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="payment-icons justify-content-center justify-content-md-end">
+            <span>We Accept:</span>
+            <span class="payment-icon visa">VISA</span>
+            <span class="payment-icon mc">MC</span>
+            <span class="payment-icon pp">PayPal</span>
+            <span class="payment-icon amex">Amex</span>
+            <span class="payment-icon" style="background:#f5f5f5;color:#333;">Stripe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<!-- jQuery -->
+<script src="./assets/js/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap Bundle (Popper included) -->
+<script src="./assets/js/bootstrap.bundle.min.js"></script>
+<!-- Custom App JS -->
+<script src="./assets/js/app.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    /* ---- Categories Dropdown Toggle ---- */
+    $('#categoriesToggle').on('click', function (e) {
+      e.stopPropagation();
+      $('#categoriesMenu').toggleClass('show');
+      var expanded = $('#categoriesMenu').hasClass('show');
+      $(this).attr('aria-expanded', expanded);
+    });
+    $(document).on('click', function (e) {
+      if (!$('#categoriesWrapper').is(e.target) && $('#categoriesWrapper').has(e.target).length === 0) {
+        $('#categoriesMenu').removeClass('show');
+        $('#categoriesToggle').attr('aria-expanded', 'false');
+      }
+    });
+
+    /* ---- Product Filter Tabs ---- */
+    $('.product-tab-btn').on('click', function () {
+      var filter = $(this).data('filter');
+      $('.product-tab-btn').removeClass('active');
+      $(this).addClass('active');
+
+      if (filter === 'all') {
+        $('.product-item').fadeIn(300);
+      } else {
+        $('.product-item').each(function () {
+          if ($(this).data('category') === filter) {
+            $(this).fadeIn(300);
+          } else {
+            $(this).fadeOut(200);
+          }
+        });
+      }
+    });
+
+    /* ---- Countdown Timer ---- */
+    var targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 30); // 30 days from now
+
+    function updateCountdown() {
+      var now = new Date();
+      var diff = targetDate - now;
+
+      if (diff <= 0) {
+        $('#cd-days').text('00');
+        $('#cd-hours').text('00');
+        $('#cd-mins').text('00');
+        $('#cd-secs').text('00');
+        return;
+      }
+
+      var days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+      $('#cd-days').text(String(days).padStart(2, '0'));
+      $('#cd-hours').text(String(hours).padStart(2, '0'));
+      $('#cd-mins').text(String(mins).padStart(2, '0'));
+      $('#cd-secs').text(String(secs).padStart(2, '0'));
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* ---- Hero Dots ---- */
+    $('.hero-dot').on('click', function () {
+      $('.hero-dot').removeClass('active');
+      $(this).addClass('active');
+    });
+
+    /* ---- Add to Cart Button Feedback ---- */
+    $(document).on('click', '.btn-add-cart', function () {
+      var $btn = $(this);
+      var original = $btn.html();
+      $btn.html('<i class="bi bi-check-lg"></i> Added!');
+      $btn.css({ 'background': '#00b207', 'color': '#fff' });
+      setTimeout(function () {
+        $btn.html(original);
+        $btn.css({ 'background': '', 'color': '' });
+      }, 1500);
+    });
+
+    /* ---- Wishlist Button Feedback ---- */
+    $(document).on('click', '.product-action-btn', function () {
+      var $btn = $(this);
+      if ($btn.find('.bi-heart').length) {
+        $btn.find('.bi-heart').toggleClass('bi-heart bi-heart-fill');
+        $btn.toggleClass('active-wishlist');
+        if ($btn.hasClass('active-wishlist')) {
+          $btn.css({ 'background': '#ff4d4d', 'color': '#fff', 'border-color': '#ff4d4d' });
+        } else {
+          $btn.css({ 'background': '', 'color': '', 'border-color': '' });
+        }
+      }
+    });
+
+    /* ---- Play Button ---- */
+    $('#playBtn').on('click', function () {
+      // In production, this would open a video modal
+      alert('Video player would open here. Connect a YouTube/Vimeo embed in production.');
+    });
+
+    /* ---- Newsletter Form ---- */
+    $('.newsletter-form .btn-subscribe').on('click', function () {
+      var email = $('.newsletter-form input[type="email"]').val().trim();
+      if (email && email.includes('@')) {
+        $(this).html('<i class="bi bi-check-circle me-2"></i>Subscribed!');
+        $(this).css('background', '#008f05');
+        setTimeout(function () {
+          $('.btn-subscribe').html('<i class="bi bi-send-fill me-2"></i>Subscribe');
+          $('.btn-subscribe').css('background', '');
+          $('.newsletter-form input[type="email"]').val('');
+        }, 2500);
+      } else {
+        $('.newsletter-form input[type="email"]').css('border-color', '#ff4d4d');
+        setTimeout(function () {
+          $('.newsletter-form input[type="email"]').css('border-color', '');
+        }, 1500);
+      }
+    });
+
+    /* ---- Smooth Scroll for anchor links ---- */
+    $('a[href^="#"]').not('[href="#"]').on('click', function (e) {
+      var target = $($(this).attr('href'));
+      if (target.length) {
+        e.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top - 80 }, 500);
+      }
+    });
+
+  }); // end document.ready
+</script>
+
+</body>
+</html>
